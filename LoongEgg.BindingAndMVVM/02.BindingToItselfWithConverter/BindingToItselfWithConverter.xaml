@@ -1,0 +1,76 @@
+﻿<Window
+    x:Class="LoongEgg.BindingAndMVVM.BindingToItselfWithConverter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LoongEgg.BindingAndMVVM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Binding To Itself With Converter"
+    Width="500"
+    Height="760"
+    Background="{x:Null}"
+    mc:Ignorable="d">
+
+    <!-- wechat: InnerGeeker -->
+    <!-- wechat/bilibili: 香辣恐龙蛋 -->
+    
+    <Window.Resources>
+        <local:ScaleConverter x:Key="ScaleConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  No binding  -->
+        <Rectangle
+            Grid.Row="0"
+            Margin="15"
+            Fill="Chocolate"
+            RadiusX="15"
+            RadiusY="15" />
+
+        <!--  Binding to itself  -->
+        <Rectangle
+            Grid.Row="1"
+            Width="{Binding 
+                Path=ActualHeight, 
+                RelativeSource={RelativeSource Mode=Self}}"
+            Margin="15"
+            Fill="DeepSkyBlue" />
+
+        <!--  Binding to itself with a scale converter  -->
+        <Border
+            Grid.Row="2"
+            Width="{Binding 
+                Path=ActualHeight, 
+                RelativeSource={RelativeSource Mode=Self}, 
+                Converter={StaticResource ScaleConverter}, 
+                ConverterParameter=2}"
+            Margin="15"
+            Background="LightSeaGreen"
+            CornerRadius="32">
+
+            <UniformGrid Rows="2">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="32"
+                    Text="{Binding 
+                        Path=Width, 
+                        RelativeSource={RelativeSource AncestorType=Border}, 
+                        StringFormat=width:{0:f1}}" />
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="32"
+                    Text="{Binding 
+                        Path=ActualHeight, 
+                        RelativeSource={RelativeSource AncestorType=Border}, 
+                        StringFormat=height:{0:f1}}" />
+            </UniformGrid>
+        </Border>
+
+    </Grid>
+</Window>

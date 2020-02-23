@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  默认的Text Box类型Base style of TextBox  -->
+    <Style x:Key="TextStyle.Base" 
+           TargetType="{x:Type TextBox}">
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="SkyBlue"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Source Code Pro"/>
+    </Style>
+
+</ResourceDictionary>

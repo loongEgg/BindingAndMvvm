@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="LoongEgg.Presentation.Controls.FlyInCharListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LoongEgg.Presentation.Controls"
+             mc:Ignorable="d" 
+             SnapsToDevicePixels="True"
+             Foreground="Yellow"  
+             Margin="2"
+             d:DesignHeight="60" 
+             d:DesignWidth="60" >
+    
+
+    <Viewbox>
+        <Grid Margin="0"
+              d:DataContext="{
+                  x:Static 
+                  local:FlyInCharListControlItemDesignModel.Instance}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"    Grid.RowSpan="2"
+                    Grid.Column="0" Grid.ColumnSpan="2"  
+                    x:Name="border"> 
+                
+                <!-- Add a render scale transform -->
+                <Border.RenderTransform>
+                    <ScaleTransform />
+                </Border.RenderTransform>
+                <Border.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5" />
+                </Border.RenderTransformOrigin>
+
+                <Viewbox Margin="0">
+                    <TextBlock Text="{Binding 
+                                    Chars, 
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    NotifyOnTargetUpdated=True}"   
+                               FontSize="42" 
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
+                        
+                        <!-- Add a render scale transform -->
+                        <TextBlock.RenderTransform>
+                            <ScaleTransform x:Name="scaleTransform" 
+                                            ScaleX="1.3" ScaleY="1.3"/>
+                        </TextBlock.RenderTransform>
+                        
+                        <TextBlock.RenderTransformOrigin>
+                            <Point X="0.5" Y="0.5" />
+                        </TextBlock.RenderTransformOrigin>
+                        <TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                             To="2.5" Duration="0:0:0.2" 
+                                             AutoReverse="True"    
+                                             Storyboard.TargetName="border" 
+                                             Storyboard.TargetProperty="
+                                                (Border.RenderTransform)
+                                                .(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation 
+                                             To="2.5" Duration="0:0:0.2" 
+                                             AutoReverse="True"             
+                                             Storyboard.TargetName="border" 
+                                             Storyboard.TargetProperty="
+                                                (Border.RenderTransform)
+                                                .(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>
+                    </TextBlock>
+                </Viewbox>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="1" >
+                <Viewbox Margin="-5,-5,-8,-5">
+                    <TextBlock Text="{Binding Hits}"  
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Visibility="{Binding 
+                                HitsVisibility,
+                                FallbackValue=Visible}"
+                           FontSize="6" />
+                </Viewbox>
+            </Border>
+        </Grid>
+    </Viewbox>
+</UserControl>

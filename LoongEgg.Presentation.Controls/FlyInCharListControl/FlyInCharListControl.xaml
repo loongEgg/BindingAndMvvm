@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="LoongEgg.Presentation.Controls.FlyInCharListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LoongEgg.Presentation.Controls"
+             mc:Ignorable="d" 
+             Foreground="Red" 
+             x:Name="this"
+             d:DesignHeight="36" 
+             d:DesignWidth="260"
+             d:DataContext="{
+                x:Static 
+                local:FlyInCharListControlDesignModel.Instance}">
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Items}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                    </StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:FlyInCharListItemControl 
+                        Width="{
+                            Binding ActualHeight, 
+                            RelativeSource={RelativeSource 
+                            Mode=FindAncestor,
+                            AncestorType=local:FlyInCharListControl}}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

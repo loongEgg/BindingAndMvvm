@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="LoongEgg.Presentation.Demo.ColorPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LoongEgg.Presentation.Demo"
+             mc:Ignorable="d" 
+             x:Name="colorPicker"
+             d:DesignHeight="60" 
+             d:DesignWidth="260">
+ 
+    <Grid>
+        <Grid.RowDefinitions> 
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/> 
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions> 
+            <ColumnDefinition Width="1*" MinWidth="20"/>
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0"  
+                   Margin="2" Stroke="Black" StrokeThickness="1">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding 
+                    ElementName=colorPicker,
+                    Path=Red, 
+                    Converter={local:ComponentToColorConverter},
+                    ConverterParameter=R}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Slider Grid.Row="0" Grid.Column="1"
+                Name="sliderRed" 
+                Minimum="0" Maximum="255"
+                VerticalAlignment="Center"
+                Margin="{Binding ElementName=colorPicker,Path=Padding}"
+                Value="{Binding ElementName=colorPicker,Path=Red}"
+                Thumb.DragCompleted="Slider_DragCompleted" /> 
+
+        <Rectangle Grid.Row="1" Grid.Column="0"  
+                   Margin="2" Stroke="Black" StrokeThickness="1">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding 
+                        ElementName=colorPicker,
+                        Path=Green, 
+                        Converter={local:ComponentToColorConverter},
+                        ConverterParameter=G}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Slider Grid.Row="1"  Grid.Column="1" 
+                Name="sliderGreen"
+                Minimum="0" Maximum="255"
+                VerticalAlignment="Center"                
+                Margin="{Binding ElementName=colorPicker,Path=Padding}"
+                Value="{Binding ElementName=colorPicker,Path=Green}" 
+                Thumb.DragCompleted="Slider_DragCompleted"/>
+
+        <Rectangle Grid.Row="2" Grid.Column="0"  
+                   Margin="2" Stroke="Black" StrokeThickness="1">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding 
+                            ElementName=colorPicker,
+                            Path=Blue, 
+                            Converter={local:ComponentToColorConverter},
+                            ConverterParameter=B}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Slider Grid.Row="2"  Grid.Column="1" 
+                Name="sliderBlue" 
+                Minimum="0" Maximum="255"
+                VerticalAlignment="Center"
+                Margin="{Binding ElementName=colorPicker,Path=Padding}"
+                Value="{Binding ElementName=colorPicker,Path=Blue}" 
+                Thumb.DragCompleted="Slider_DragCompleted"/>
+
+        <Rectangle Grid.Column="2"
+                   Grid.RowSpan="3"
+                   Margin="{Binding ElementName=colorPicker,Path=Padding}"
+                   Width="50" Stroke="Black" StrokeThickness="1">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding ElementName=colorPicker,Path=Color}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+</UserControl>

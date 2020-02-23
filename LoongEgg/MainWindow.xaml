@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoongEgg"
+        xmlns:control="clr-namespace:LoongEgg.Presentation.Demo;assembly=LoongEgg.Presentation.Demo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Loong Keys [先行版]" Height="350" Width="620" FontFamily="Alibaba Sans">
+    <Window.Resources> 
+    </Window.Resources>
     <Grid>
-        
+        <StackPanel ButtonBase.Click="Button_Click"
+                    VerticalAlignment="Center">
+            <!--<Button>ColorPicker</Button>
+            <Button>ThemeDemo</Button>-->
+            <TextBox xml:space="preserve"
+                     IsReadOnly="True">
+                本工具由B站Up发布:    香辣恐龙蛋
+                本工具制作视频 / 文档: https://space.bilibili.com/14343016
+                本工具源代码微信搜索: 香辣恐龙蛋公众号获取
+                概念版将于2021年02月14日到期，可通过更改系统时间继续使用
+                或者在上述地址找到， 依然免注册免费使用的发布版
+                Tips:
+                    按[Delete]/[Enter]清屏， 按[Backspace]回退输入
+                    目前最大计数12个键，到达最大数目后也会清屏
+                    软件上方[！]为指示使能
+                点击[KeyboardHook]开始使用
+            </TextBox>
+            <Button Width="260">KeyboardHook</Button>
+        </StackPanel> 
     </Grid>
 </Window>

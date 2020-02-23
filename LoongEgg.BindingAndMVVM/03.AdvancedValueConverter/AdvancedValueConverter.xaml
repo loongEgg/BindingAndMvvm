@@ -1,0 +1,51 @@
+﻿<Window x:Class="LoongEgg.BindingAndMVVM.AdvancedValueConverter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoongEgg.BindingAndMVVM"  
+        Title="Advanced Value Converter"
+        Width="760"
+        Height="520"
+        Background="{x:Null}"
+        mc:Ignorable="d">
+
+    <!-- wechat: InnerGeeker -->
+    <!-- wechat/bilibili: 香辣恐龙蛋 -->
+
+    <Window.Resources>
+        <local:ScaleConverter x:Key="ScaleConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Binding to itself with Advanced Value Converter -->
+        <Rectangle
+            Grid.Row="0"
+            Width="{Binding 
+                Path=ActualHeight, 
+                RelativeSource={RelativeSource Mode=Self},
+                Converter={local:ScaleToLengthConverter},
+                ConverterParameter=2}"
+            Margin="15"
+            Fill="DeepSkyBlue" />
+
+        <!--  Binding to itself with a scale converter  -->
+        <Border
+            Grid.Row="1"
+            Width="{Binding 
+                Path=ActualHeight, 
+                RelativeSource={RelativeSource Mode=Self}, 
+                Converter={StaticResource ScaleConverter}, 
+                ConverterParameter=2}"
+            Margin="15"
+            Background="LightSeaGreen"
+            CornerRadius="32"> 
+        </Border>
+
+    </Grid>
+</Window>
+
